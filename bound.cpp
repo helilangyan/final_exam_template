@@ -1,6 +1,7 @@
 #include <iostream>
 #include <list>
 #include <iterator>
+#include <cstring>
 using namespace std;
 
 struct bond{
@@ -62,6 +63,28 @@ void print_by_order(list<bond>& l){
     print(l);
     l.sort(compare_R);
     print(l);
+}
+
+void count_frequency(list<bond>& l, list<node> n){
+    bool found = false;
+    node temp_node;
+    for(list<bond>::iterator i = l.begin(); i != l.end(); i++){
+        found = false;
+        for(list<node>::iterator j = n.begin(); j != n.end(); j++){
+            if(i->name == j->name){
+                found = true;
+                j->frequency += 1;
+                break;
+            }
+        }
+        if(!found){
+            temp_node.frequency = 1;
+            strcmp(temp_node.name, i->name);
+            n.push_back(temp_node);
+        }
+    }
+    for(list<node>::iterator j = n.begin(); j != n.end(); j++)
+        cout << "name:"<< j->name << " freq" << j->frequency<< endl;
 }
 
 int main(){
