@@ -71,7 +71,7 @@ void count_frequency(list<bond>& l, list<node> n){
     for(list<bond>::iterator i = l.begin(); i != l.end(); i++){
         found = false;
         for(list<node>::iterator j = n.begin(); j != n.end(); j++){
-            if(i->name == j->name){
+            if(strcmp(i->name, j->name) == 0){
                 found = true;
                 j->frequency += 1;
                 break;
@@ -79,7 +79,7 @@ void count_frequency(list<bond>& l, list<node> n){
         }
         if(!found){
             temp_node.frequency = 1;
-            strcmp(temp_node.name, i->name);
+            strcpy(temp_node.name, i->name);
             n.push_back(temp_node);
         }
     }
@@ -117,6 +117,9 @@ int main(){
                 quit = true;
                 cout << "bye~";
             }
+            break;
+            case 6:
+                count_frequency(bond_list, frequency);
             break;
         }
 
