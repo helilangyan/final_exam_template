@@ -57,7 +57,27 @@ bool compare_R(const bond& first, const bond& second){
     return first.R < second.R;
 }
 
-void print_historg(list<bond>& l){}
+void print_historg(list<bond>& l){
+    float min = l.front().principal;
+    float max = min;
+    int gap = 0;
+    for(list<bond>::iterator i = l.begin(); i != l.end(); i++){
+        min = i->principal < min ? i->principal : min;
+        max = i->principal > max ? i->principal : max;
+    }
+    cout << "min:" << min << "\nmax:" << max << endl;
+    gap = (max - min) / 20;
+    int hist[20];
+    for(int index = 0; index < 21; index++){
+        hist[index] = 0;
+    }
+    for(list<bond>::iterator i = l.begin(); i != l.end(); i++){
+        hist[int(i->principal - min)/gap]++;
+    }
+    for(int index = 0; index < 21; index++){
+        cout << min + gap * index << "    "<< hist[index] << endl;
+    }
+}
 
 void print_by_order(list<bond>& l){
     print(l);
